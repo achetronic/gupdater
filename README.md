@@ -3,6 +3,10 @@
 ## Introduction 
 Google DDNS IP updater is a group of scripts to update an IP of a domain/subdomain hosted by DDNS in Google Domains through an API call
 
+## Dependencies
+* PHP (version 7)
+* php-openssl
+
 ## How to install
 1.  mkdir /srv
 2.  mkdir /srv/gupdater
