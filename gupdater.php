@@ -8,10 +8,9 @@ $googleDomainPass = "7dsa6f7ds6afs8d7";       # password that Google gives you w
 $googleDomain = "subdomain.domain.com";       # your domain/subdomain registered as DDNS
 $gotIp = null;                                #
 $savedIp = null;                              #
-$logFile = "error.log";                       # file where errors will be saved
-$ipFile = "ip.save";                          # file where ip will be saved locally
+$logFile = "/srv/gupdater/error.log";         # file where errors will be saved
+$ipFile = "/srv/gupdater/ip.save";            # file where ip will be saved locally
 $repeatEach = 10;                             # minutes between tries
-
 
 
 while( true ){
@@ -29,13 +28,13 @@ while( true ){
     # Check if your IP is available
     if( empty($gotIp) || is_null($gotIp) ){
         file_put_contents($logFile, "[".time()."] Error obtaining your personal IP" . PHP_EOL, FILE_APPEND);
-        exit();
+        goto restABit;
     }
 
     # If saved IP and obtained one are the same, exit.
     if( $savedIp === $gotIp ){
         file_put_contents($logFile, "[".time()."] Saved IP is still the same you had. Not updating" . PHP_EOL, FILE_APPEND);
-        exit();
+        goto restABit;
     }
 
     # Save the new IP into the file
@@ -47,9 +46,11 @@ while( true ){
     # Check if everything was ok
     if( (strpos($request, "good") === false) || (strpos($request, "nochg") === false) ){
         file_put_contents($logFile, "[".time()."] Error updating your IP: " . $request . PHP_EOL, FILE_APPEND);
+        goto restABit;
     }
 
     # Wait some minutes to repeat again
+    restABit:
     sleep($repeatEach * 60);
 }
 ?>
