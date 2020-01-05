@@ -8,15 +8,15 @@
 $googleCredentials = [
 
     [
-        'user'   => 'MmTZZydsJhkmn19S',
-        'pass'   => '1GO0O0nDT0C4gDHL',
-        'domain' => 'achetronic.com'
+        'user'   => 'user-from-google',
+        'pass'   => 'pass-from-google',
+        'domain' => 'domain.tld'
     ],
 
     [
-        'user'   => 'gxlKMfhdinRXOyEt',
-        'pass'   => 'o9UJ6KGMoKUoymIB',
-        'domain' => '*.achetronic.com'
+        'user'   => 'another-user-from-google',
+        'pass'   => 'another-pass-from-google',
+        'domain' => '*.domain.tld'
     ],
 
 ];
