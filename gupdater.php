@@ -21,9 +21,12 @@ $googleCredentials = [
 
 ];
 
+# Create needed directories
+mkdir(__DIR__ . "/error", 0755, true);
+mkdir(__DIR__ . "/cache", 0755, true);
 
 # file where errors will be saved
-$logFile = __DIR__ . "/" . "error.log";         
+$logFile = __DIR__ . "/error/" . "error.log";         
 
 # Get your public IP
 $publicIp = file_get_contents("https://domains.google.com/checkip");
@@ -38,8 +41,8 @@ if( empty($publicIp) || is_null($publicIp) ){
 foreach ( $googleCredentials as $credential ) {
 
     # Path where public ip will be cached locally
-    $ipCacheFile = __DIR__ . "/" . str_replace('*', '_', $credential['domain']) . ".cache";
-    $ipCacheFile = __DIR__ . "/" . $credential['domain'] . ".cache";
+    $ipCacheFile = __DIR__ . "/cache/" . preg_replace('/[^A-Za-z0-9.]+/', '_', $credential['domain']);
+    //$ipCacheFile = __DIR__ . "/" . $credential['domain'] . ".cache";
 
     # Check if we have created (or create) the initial IP cache file
     if( !file_exists($ipCacheFile) ){
