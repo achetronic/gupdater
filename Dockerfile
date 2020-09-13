@@ -15,6 +15,8 @@ RUN apt-get update
 RUN apt-get install -y -qq --force-yes \
     lsb-base \
     php${php_version}-cli \
+	openssl \
+	ca-certificates \
     --no-install-recommends > /dev/null
 
 # Installing packages for the script
@@ -47,7 +49,7 @@ RUN rm -rf /init.sh && touch /init.sh
 RUN echo "#!/bin/bash" >> /init.sh
 RUN echo "shopt -s dotglob" >> /init.sh
 RUN echo "chmod +x /srv/gupdater/gupdater.sh" >> /init.sh
-RUN echo "(crontab -l; echo '" ${minutes_between_requests} " * * * * /srv/gupdater/gupdater.sh >> /dev/null 2>&1';) | crontab -" >> /init.sh
+RUN echo "(crontab -l; echo '" ${minutes_between_requests} " * * * * sh /srv/gupdater/gupdater.sh >> /dev/null 2>&1';) | crontab -" >> /init.sh
 RUN echo "/bin/bash" >> /init.sh
 RUN chown root:root /init.sh
 RUN chmod +x /init.sh

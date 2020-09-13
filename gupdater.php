@@ -38,7 +38,7 @@ if( empty($publicIp) || is_null($publicIp) ){
 foreach ( $googleCredentials as $credential ) {
 
     # Path where public ip will be cached locally
-    //$ipCacheFile = __DIR__ . "/" . str_replace('*', '_', $credential['domain']) . ".cache";
+    $ipCacheFile = __DIR__ . "/" . str_replace('*', '_', $credential['domain']) . ".cache";
     $ipCacheFile = __DIR__ . "/" . $credential['domain'] . ".cache";
 
     # Check if we have created (or create) the initial IP cache file
