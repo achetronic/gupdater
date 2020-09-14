@@ -24,3 +24,21 @@ domains/subdomains hosted by DDNS in Google Domains through an API call
 ## How to install (easy way with docker)
 1.  docker pull achetronic/gupdater:latest
 2.  docker run -it achetronic/gupdater:latest -v ./credentials.json:/srv/gupdater/credentials/credentials.json
+
+## credentials.json file
+As you can see, there is a file called credentials.json that is mounted into the image. You need a file with your domains with the following structure. Of course you can add as much domains and subdomains as you want. **"*"** character is allowed too
+```
+[
+    {
+        "user"   : "your-ddns-user",
+        "pass"   : "your-ddns-password",
+        "domain" : "your.domain.com"
+    },
+    {
+        "user"   : "another-ddns-user",
+        "pass"   : "another-ddns-password",
+        "domain" : "*.domain.com"
+    }
+]
+
+```
