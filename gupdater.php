@@ -19,7 +19,7 @@ if( !file_exists($credentialsFile) ){
 $credentials = file_get_contents($credentialsFile);
 
 # Parse and check credentials file
-$credentials = json_decode($credentials);
+$credentials = json_decode($credentials, true);
 if (json_last_error() !== JSON_ERROR_NONE) {
     file_put_contents( $logFile , "[".time()."] Credentials file is not a valid JSON" . PHP_EOL, FILE_APPEND);
     die();
@@ -93,14 +93,14 @@ foreach ( $googleCredentials as $credential ) {
 
     # If cached and public IP are the same, exit.
     if( $cachedIp === $publicIp ){
-        file_put_contents( $logFile , "[".time()."] Cached IP for ".$credential['domain']." is still the same you had. Not updating" . PHP_EOL, FILE_APPEND);
+        file_put_contents( $logFile , "[".time()."] Cached IP for ".$credential['domain']." is still the same you had. Not updating the cache file" . PHP_EOL, FILE_APPEND);
         continue;
     }
 
     # Save the new IP into the cache file
     file_put_contents( $ipCacheFile, $publicIp );
 
-    # Change your personal domain to point your house in Google Domains
+    # Change domain's [A] register to point your proxy
     $request = file_get_contents("https://".$credential['user'].":".$credential['pass']."@domains.google.com/nic/update?hostname=".$credential['domain']."&myip=".$publicIp);
 
     # Check if everything was ok
