@@ -46,7 +46,7 @@ RUN echo "* * * * * /srv/gupdater/gupdater.sh" >> /var/spool/cron/crontabs/root
 RUN rm -rf /entrypoint.sh && touch /entrypoint.sh
 RUN echo "#!/bin/bash" >> /entrypoint.sh
 RUN echo "service cron start" >> /entrypoint.sh
-RUN echo "(crontab -l; echo '* * * * * /srv/gupdater/gupdater.sh >> /dev/null 2>&1';) | crontab -" >> /entrypoint.sh
+RUN echo "(crontab -l; echo '${minutes_between_requests} * * * * /srv/gupdater/gupdater.sh >> /dev/null 2>&1';) | crontab -" >> /entrypoint.sh
 RUN echo "touch /etc/crontab /etc/cron.*/*" >> /entrypoint.sh
 RUN echo 'exec "$@"' >> /entrypoint.sh
 

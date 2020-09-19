@@ -93,7 +93,7 @@ foreach ( $googleCredentials as $credential ) {
 
     # If cached and public IP are the same, exit.
     if( $cachedIp === $publicIp ){
-        file_put_contents( $logFile , "[".time()."] Cached IP for ".$credential['domain']." is still the same you had. Not updating the cache file" . PHP_EOL, FILE_APPEND);
+        file_put_contents( $logFile , "[".time()."] Cached IP for ".$credential['domain']." is still the same you had. Not updating." . PHP_EOL, FILE_APPEND);
         continue;
     }
 
