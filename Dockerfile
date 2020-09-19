@@ -36,8 +36,8 @@ RUN find /srv -type d -exec chmod 755 {} \;
 RUN chmod +x /srv/gupdater/gupdater.sh
 
 # CONFIGURE CRON Schedule the renovation (set to every minute)
-RUN touch /var/spool/cron/crontabs/root 
-RUN echo "* * * * * /srv/gupdater/gupdater.sh" >> /var/spool/cron/crontabs/root
+#RUN touch /var/spool/cron/crontabs/root 
+#RUN echo "* * * * * /srv/gupdater/gupdater.sh" >> /var/spool/cron/crontabs/root
 
 
 
