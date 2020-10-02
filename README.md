@@ -1,3 +1,7 @@
+```
+DEPRECATED: DDCLIENT NOW SUPPORTS GOOGLE DDNS SO YOU CAN USE IT. TO LEARN HOW TO, LOOK FOR IT [ON MY YOUTUBE CHANNEL](http://youtube.com/achetronic)
+```
+
 # Gupdater
 
 ## Author
